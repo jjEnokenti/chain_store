@@ -163,6 +163,14 @@ pyyaml = ">=5.1"
 virtualenv = ">=20.10.0"
 
 [[package]]
+name = "psycopg2-binary"
+version = "2.9.6"
+description = "psycopg2 - Python-PostgreSQL Database Adapter"
+category = "main"
+optional = false
+python-versions = ">=3.6"
+
+[[package]]
 name = "pytest"
 version = "7.4.0"
 description = "pytest: simple powerful testing with Python"
@@ -246,7 +254,7 @@ test = ["covdefaults (>=2.3)", "coverage-enable-subprocess (>=1)", "coverage (>=
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.10"
-content-hash = "7c6e9cac225991caab3785725d2e9c9b77af543e8b5a13f02de7f4423f247ba0"
+content-hash = "0e19a738cf79ef88010ad1721fc9ad9a29ca55a10d787f982d1aa57d530bb065"
 
 [metadata.files]
 asgiref = []
@@ -264,6 +272,7 @@ packaging = []
 platformdirs = []
 pluggy = []
 pre-commit = []
+psycopg2-binary = []
 pytest = []
 pyyaml = []
 sqlparse = []
