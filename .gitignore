@@ -131,3 +131,5 @@ dmypy.json
 .idea
 postgres-data
 examples
+
+pg_data
