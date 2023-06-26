@@ -6,7 +6,7 @@ services:
     image: postgres:15.1-alpine
     restart: always
     environment:
-      PG_USER: ${DB_USER}
+      PGUSER: ${DB_USER}
       POSTGRES_USER: ${DB_USER}
       POSTGRES_PASSWORD: ${DB_USER_PASSWORD}
       POSTGRES_DB: ${DB_NAME}
