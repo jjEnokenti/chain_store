@@ -36,7 +36,7 @@ ALLOWED_HOSTS = ['*']
 
 # Application definition
 MY_APPS = [
-
+    'chain_store',
 ]
 
 INSTALLED_APPS = [
