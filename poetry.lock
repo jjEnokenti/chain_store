@@ -77,6 +77,19 @@ argon2 = ["argon2-cffi (>=19.1.0)"]
 bcrypt = ["bcrypt"]
 
 [[package]]
+name = "django-environ"
+version = "0.10.0"
+description = "A package that allows you to utilize 12factor inspired environment variables to configure your Django application."
+category = "main"
+optional = false
+python-versions = ">=3.5,<4"
+
+[package.extras]
+develop = ["coverage[toml] (>=5.0a4)", "pytest (>=4.6.11)", "furo (>=2021.8.17b43,<2021.9.0)", "sphinx (>=3.5.0)", "sphinx-notfound-page"]
+docs = ["furo (>=2021.8.17b43,<2021.9.0)", "sphinx (>=3.5.0)", "sphinx-notfound-page"]
+testing = ["coverage[toml] (>=5.0a4)", "pytest (>=4.6.11)"]
+
+[[package]]
 name = "filelock"
 version = "3.12.2"
 description = "A platform independent file lock."
@@ -256,7 +269,7 @@ python-versions = "*"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.10"
-content-hash = "66190c17daa30acbeb114d064ae82a5f2ea47160041d8a3243edc94be7d98e56"
+content-hash = "f71b6482e917a8cec1718ec2c8d5a9a7d09a07e5bd67fad0ddcd28984a02ad79"
 
 [metadata.files]
 asgiref = []
@@ -266,6 +279,7 @@ cfgv = []
 colorama = []
 distlib = []
 django = []
+django-environ = []
 filelock = []
 identify = []
 more-itertools = []
