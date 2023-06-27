@@ -5,8 +5,8 @@ class Employee(AbstractUser):
     """Employee model."""
 
     class Meta:
-        verbose_name = ''
-        verbose_name_plural = ''
+        verbose_name = 'Сотрудник'
+        verbose_name_plural = 'Сотрудники'
 
     def __str__(self):
         return self.username
