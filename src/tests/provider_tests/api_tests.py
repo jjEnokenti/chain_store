@@ -7,8 +7,10 @@ from chain_store.serializers.provider import ProviderSerializer
 
 @pytest.mark.django_db
 class TestProviderAPI:
+    """Tests for provider api"""
 
     def test_create_provider_with_anon(self, client, provider_level_0):
+        """Test to create provider with not authenticated employee."""
         provider = provider_level_0
         url = reverse('provider-list')
 
@@ -23,6 +25,7 @@ class TestProviderAPI:
         assert response.status_code == status.HTTP_403_FORBIDDEN
 
     def test_get_list_provider_with_anon(self, client, list_providers):
+        """Test to get list of provider with not authenticated employee."""
         url = reverse('provider-list')
 
         response = client.get(path=url)
@@ -30,6 +33,7 @@ class TestProviderAPI:
         assert response.status_code == status.HTTP_403_FORBIDDEN
 
     def test_get_single_provider_with_anon(self, client, provider_level_1):
+        """Test to get detail of provider with not authenticated employee."""
         provider = provider_level_1
         url = reverse('provider-detail', kwargs={'pk': provider.pk})
 
@@ -38,6 +42,7 @@ class TestProviderAPI:
         assert response.status_code == status.HTTP_403_FORBIDDEN
 
     def test_update_provider_with_anon(self, client, provider_level_0):
+        """Test to update provider with not authenticated employee."""
         provider = provider_level_0
         url = reverse('provider-detail', kwargs={'pk': provider.pk})
 
@@ -52,6 +57,7 @@ class TestProviderAPI:
         assert provider.title != title
 
     def test_delete_provider_with_anon(self, client, provider_level_0):
+        """Test to delete provider with not authenticated employee."""
         provider = provider_level_0
         url = reverse('provider-detail', kwargs={'pk': provider.pk})
 
@@ -60,6 +66,7 @@ class TestProviderAPI:
         assert response.status_code == status.HTTP_403_FORBIDDEN
 
     def test_create_provider_ok(self, auth_client, provider_level_0):
+        """Test to success create provider."""
         provider = provider_level_0
         url = reverse('provider-list')
 
@@ -81,6 +88,7 @@ class TestProviderAPI:
         assert response.data['at_created'] != provider.at_created
 
     def test_create_provider_already_exists_title(self, auth_client, provider_level_0):
+        """Test try to create provider with title already existent."""
         provider = provider_level_0
         url = reverse('provider-list')
 
@@ -95,6 +103,7 @@ class TestProviderAPI:
         assert response.status_code == status.HTTP_400_BAD_REQUEST
 
     def test_get_list_provider_ok(self, auth_client, list_providers):
+        """Test to success get list of provider."""
         url = reverse('provider-list')
 
         response = auth_client.get(path=url)
@@ -103,6 +112,7 @@ class TestProviderAPI:
         assert response.data == ProviderSerializer(list_providers, many=True).data
 
     def test_get_filtered_list_provider_ok(self, auth_client, list_providers, provider_factory):
+        """Test to success get filtered list of provider."""
         url = reverse('provider-list')
 
         size = 3
@@ -115,6 +125,7 @@ class TestProviderAPI:
         assert response.data == ProviderSerializer(providers, many=True).data
 
     def test_get_single_provider_ok(self, auth_client, provider_level_1):
+        """Test to success get detail provider."""
         provider = provider_level_1
         url = reverse('provider-detail', kwargs={'pk': provider.pk})
 
@@ -124,6 +135,7 @@ class TestProviderAPI:
         assert response.data == ProviderSerializer(provider).data
 
     def test_get_single_provider_with_debt(self, auth_client, provider_level_2_with_debt):
+        """Test to success get detail provider with debt."""
         provider = provider_level_2_with_debt
         url = reverse('provider-detail', kwargs={'pk': provider.pk})
 
@@ -133,6 +145,7 @@ class TestProviderAPI:
         assert response.data['debt'] == provider.debt
 
     def test_update_provider_ok(self, auth_client, provider_level_0):
+        """Test to success update provider."""
         provider = provider_level_0
         url = reverse('provider-detail', kwargs={'pk': provider.pk})
 
@@ -147,6 +160,7 @@ class TestProviderAPI:
         assert response.data['title'] == title
 
     def test_update_provider_debt_denied(self, auth_client, provider_level_2_with_debt):
+        """Test try to update debt of provider."""
         provider = provider_level_2_with_debt
         url = reverse('provider-detail', kwargs={'pk': provider.pk})
 
@@ -161,6 +175,7 @@ class TestProviderAPI:
         assert response.data['debt'] != '0.00'
 
     def test_update_provider_already_exists_title(self, auth_client, provider_level_0, list_providers):
+        """Test try to update title of provider already existent."""
         provider = provider_level_0
         url = reverse('provider-detail', kwargs={'pk': provider.pk})
 
@@ -175,6 +190,7 @@ class TestProviderAPI:
         assert provider.title != title
 
     def test_delete_provider_ok(self, auth_client, provider_level_0):
+        """Test to success delete provider."""
         provider = provider_level_0
         url = reverse('provider-detail', kwargs={'pk': provider.pk})
 
