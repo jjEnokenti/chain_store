@@ -3,8 +3,11 @@ from django.contrib.auth import (
     password_validation,
 )
 from django.contrib.auth.hashers import make_password
-from django.core import exceptions
-from rest_framework import serializers
+from django.core import exceptions as django_exceptions
+from rest_framework import (
+    exceptions,
+    serializers,
+)
 
 from employees.models import Employee
 
@@ -34,7 +37,7 @@ class EmployeeCreateSerializer(serializers.ModelSerializer):
 
         try:
             password_validation.validate_password(password=password)
-        except exceptions.ValidationError as error:
+        except django_exceptions.ValidationError as error:
             error_dict = {'password': error.messages}
             raise serializers.ValidationError(detail=error_dict)
 
@@ -65,7 +68,7 @@ class EmployeeSerializer(serializers.ModelSerializer):
         extra_kwargs = {
             'id': {'read_only': True},
             'is_active': {'read_only': True},
-            }
+        }
 
 
 class EmployeeLoginSerializer(serializers.ModelSerializer):
@@ -89,7 +92,7 @@ class EmployeeLoginSerializer(serializers.ModelSerializer):
         )
 
         if not employee:
-            raise exceptions.ValidationError('Incorrect username or password.')
+            raise exceptions.AuthenticationFailed('Incorrect username or password.')
 
         return employee
 
