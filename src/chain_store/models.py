@@ -38,7 +38,7 @@ class Product(models.Model):
 
 
 class Provider(models.Model):
-    """Chain store model."""
+    """Provider model."""
 
     class Level(models.IntegerChoices):
         factory = 0, 'Завод'
