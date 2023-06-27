@@ -21,3 +21,8 @@ pre-commit = "^3.3.3"
 [build-system]
 requires = ["poetry-core>=1.0.0"]
 build-backend = "poetry.core.masonry.api"
+
+[tool.pytest.ini_options]
+DJANGO_SETTINGS_MODULE = "project.settings"
+addopts = '-p no:warnings'
+python_files = '*_tests.py test_*.py tests_*.py test_ _test'
