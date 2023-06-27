@@ -1,6 +1,5 @@
-# from rest_framework.filters import SearchFilter, OrderingFilter
-# from rest_framework.permissions import IsAuthenticated
 from django_filters.rest_framework import DjangoFilterBackend
+from rest_framework.permissions import IsAuthenticated
 from rest_framework.viewsets import ModelViewSet
 
 from chain_store.filters import ProviderFilter
@@ -21,7 +20,7 @@ class ProviderViewSet(ModelViewSet):
     filter_backends = (DjangoFilterBackend,)
     filterset_class = ProviderFilter
 
-    # permission_classes = (IsAuthenticated,)
+    permission_classes = (IsAuthenticated,)
 
     def get_serializer_class(self):
         return self.serializers.get(self.action, self.serializer_default)
