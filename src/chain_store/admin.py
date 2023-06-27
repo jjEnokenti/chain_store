@@ -5,7 +5,7 @@ from django.utils.html import format_html
 from chain_store.models import (
     Contact,
     Product,
-    Store,
+    Provider,
 )
 
 
@@ -21,7 +21,7 @@ class ProductAdmin(admin.ModelAdmin):
     list_filter = ('title', 'model', 'release_date',)
 
 
-@admin.register(Store)
+@admin.register(Provider)
 class StoreAdmin(admin.ModelAdmin):
     list_display = (
         'title',
@@ -38,7 +38,7 @@ class StoreAdmin(admin.ModelAdmin):
         provider = obj.provider
 
         if provider:
-            url = reverse('admin:chain_store_store_change', args=[provider.id])
+            url = reverse('admin:chain_store_provider_change', args=[provider.id])
 
             return format_html(f'<a href={url}>{provider.title}</a>')
 
