@@ -11,7 +11,7 @@ from drf_spectacular.views import (
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/chain/', include('chain_store.urls')),
+    path('api/', include('chain_store.urls')),
     path('api/employees/', include('employees.urls')),
 
     # swagger

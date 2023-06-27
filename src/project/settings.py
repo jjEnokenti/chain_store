@@ -117,6 +117,7 @@ SPECTACULAR_SETTINGS = {
     'TITLE': 'Chain store API',
     'DESCRIPTION': 'Chain store project',
     'VERSION': '0.1.0',
+    'SCHEMA_PATH_PREFIX': r'/api',
 }
 
 REST_FRAMEWORK = {
