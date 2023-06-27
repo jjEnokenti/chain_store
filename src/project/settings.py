@@ -27,6 +27,8 @@ ALLOWED_HOSTS = ['*']
 MY_APPS = [
     'chain_store',
     'employees',
+
+    'drf_spectacular',
 ]
 
 INSTALLED_APPS = [
@@ -110,3 +112,13 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = 'employees.Employee'
+
+SPECTACULAR_SETTINGS = {
+    'TITLE': 'Chain store API',
+    'DESCRIPTION': 'Chain store project',
+    'VERSION': '0.1.0',
+}
+
+REST_FRAMEWORK = {
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
+}
