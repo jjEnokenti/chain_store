@@ -6,6 +6,7 @@ from chain_store.serializers.product import ProductSerializer
 
 
 class ProviderNestedSerializer(serializers.ModelSerializer):
+    """Nested provider serializer."""
     email = serializers.CharField(source='contact.email', read_only=True)
     address = serializers.CharField(source='contact.full_address', read_only=True)
 
@@ -19,6 +20,7 @@ class ProviderNestedSerializer(serializers.ModelSerializer):
 
 
 class ProviderSerializer(serializers.ModelSerializer):
+    """Provider main serializer."""
     provider = ProviderNestedSerializer()
     contact = ContactSerializer()
     products = ProductSerializer(many=True)
@@ -33,6 +35,7 @@ class ProviderSerializer(serializers.ModelSerializer):
 
 
 class ProviderCreateSerializer(serializers.ModelSerializer):
+    """Provider create serializer."""
     class Meta:
         model = Provider
         fields = '__all__'
