@@ -13,6 +13,13 @@ from employees.models import Employee
 
 
 class EmployeeCreateSerializer(serializers.ModelSerializer):
+    """
+    Employee create serializer.
+
+    override create method:
+        validate input passwords
+        if ok create new user else raise ValidationError
+    """
     password_repeat = serializers.CharField(write_only=True)
 
     class Meta:
@@ -55,6 +62,7 @@ class EmployeeCreateSerializer(serializers.ModelSerializer):
 
 
 class EmployeeSerializer(serializers.ModelSerializer):
+    """Employee detail and list serializer."""
     class Meta:
         model = Employee
         fields = (
@@ -72,6 +80,13 @@ class EmployeeSerializer(serializers.ModelSerializer):
 
 
 class EmployeeLoginSerializer(serializers.ModelSerializer):
+    """
+    Employee login serializer.
+
+    override create method:
+        if incorrect credentials raise AuthenticationError
+        else return Employee instance
+    """
     username = serializers.CharField(required=True)
     password = serializers.CharField(required=True, write_only=True)
 
@@ -95,9 +110,3 @@ class EmployeeLoginSerializer(serializers.ModelSerializer):
             raise exceptions.AuthenticationFailed('Incorrect username or password.')
 
         return employee
-
-
-class EmployeeLogoutSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Employee
-        fields = ('id',)
