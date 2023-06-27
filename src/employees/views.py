@@ -29,7 +29,6 @@ class EmployeeLoginSerializer(generics.GenericAPIView):
 
 
 class EmployeeLogoutView(generics.GenericAPIView):
-    serializer_class = serializers.EmployeeLogoutSerializer
     permission_classes = (IsAuthenticated,)
 
     def delete(self, request, *args, **kwargs):
