@@ -75,8 +75,11 @@ class Provider(models.Model):
         return self.title
 
     def save(self, **kwargs):
+        if self.provider is None:
+            self.level = self.Level.factory
         if self.level == self.Level.factory:
             self.debt = 0
+
         return super().save(**kwargs)
 
     class Meta:
