@@ -6,6 +6,7 @@ TEST_EMPLOYEE_PASSWORD = 'password12345'
 
 
 class EmployeeFactory(factory.django.DjangoModelFactory):
+    """Employee factory."""
     class Meta:
         model = 'employees.Employee'
 
@@ -17,6 +18,7 @@ class EmployeeFactory(factory.django.DjangoModelFactory):
 
 
 class ContactFactory(factory.django.DjangoModelFactory):
+    """Contact factory."""
     class Meta:
         model = 'chain_store.Contact'
 
@@ -28,6 +30,7 @@ class ContactFactory(factory.django.DjangoModelFactory):
 
 
 class ProductFactory(factory.django.DjangoModelFactory):
+    """Product factory."""
     class Meta:
         model = 'chain_store.Product'
 
@@ -37,6 +40,12 @@ class ProductFactory(factory.django.DjangoModelFactory):
 
 
 class ProviderFactory(factory.django.DjangoModelFactory):
+    """
+    Provider factory.
+
+    method products:
+        implementation many to many related
+    """
     class Meta:
         model = 'chain_store.Provider'
 
