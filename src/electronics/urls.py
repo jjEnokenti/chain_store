@@ -8,4 +8,5 @@ from django.urls import (
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/chain/', include('chain_store.urls')),
+    path('api/employees/', include('employees.urls')),
 ]
