@@ -8,14 +8,14 @@ class Contact(models.Model):
     country = models.CharField(max_length=155, verbose_name='Страна')
     city = models.CharField(max_length=155, verbose_name='Город')
     street = models.CharField(max_length=155, verbose_name='Улица')
-    building_number = models.PositiveIntegerField(verbose_name='Номер здания')
+    building_number = models.PositiveIntegerField(verbose_name='Номер здания', blank=True, null=True)
 
     def __str__(self):
         return self.email
 
     @property
     def full_address(self):
-        return f'{self.country}, {self.city}, {self.street}, {self.building_number}'
+        return f'{self.country}, {self.city}, {self.street}, {self.building_number or ""}'
 
     class Meta:
         verbose_name = 'Контакт'
@@ -37,7 +37,7 @@ class Product(models.Model):
         verbose_name_plural = 'Продукты'
 
 
-class Store(models.Model):
+class Provider(models.Model):
     """Chain store model."""
 
     class Level(models.IntegerChoices):
@@ -56,7 +56,12 @@ class Store(models.Model):
         Product, related_name='products', verbose_name='Продукт', blank=True
     )
     provider = models.ForeignKey(
-        'self', verbose_name='Поставщик', on_delete=models.SET_NULL, null=True, blank=True
+        'self',
+        verbose_name='Поставщик',
+        related_name='child_provider',
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True
     )
     debt = models.DecimalField(
         max_digits=10,
@@ -68,6 +73,11 @@ class Store(models.Model):
 
     def __str__(self):
         return self.title
+
+    def save(self, **kwargs):
+        if self.level == self.Level.factory:
+            self.debt = 0
+        return super().save(**kwargs)
 
     class Meta:
         verbose_name = 'Объект сети'

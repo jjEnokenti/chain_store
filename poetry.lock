@@ -67,6 +67,18 @@ docs = ["furo (>=2021.8.17b43,<2021.9.0)", "sphinx (>=3.5.0)", "sphinx-notfound-
 testing = ["coverage[toml] (>=5.0a4)", "pytest (>=4.6.11)"]
 
 [[package]]
+name = "djangorestframework"
+version = "3.14.0"
+description = "Web APIs for Django, made easy."
+category = "main"
+optional = false
+python-versions = ">=3.6"
+
+[package.dependencies]
+django = ">=3.0"
+pytz = "*"
+
+[[package]]
 name = "exceptiongroup"
 version = "1.1.1"
 description = "Backport of PEP 654 (exception groups)"
@@ -190,6 +202,14 @@ tomli = {version = ">=1.0.0", markers = "python_version < \"3.11\""}
 testing = ["argcomplete", "attrs (>=19.2.0)", "hypothesis (>=3.56)", "mock", "nose", "pygments (>=2.7.2)", "requests", "setuptools", "xmlschema"]
 
 [[package]]
+name = "pytz"
+version = "2023.3"
+description = "World timezone definitions, modern and historical"
+category = "main"
+optional = false
+python-versions = "*"
+
+[[package]]
 name = "pyyaml"
 version = "6.0"
 description = "YAML parser and emitter for Python"
@@ -254,7 +274,7 @@ test = ["covdefaults (>=2.3)", "coverage-enable-subprocess (>=1)", "coverage (>=
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.10"
-content-hash = "0e19a738cf79ef88010ad1721fc9ad9a29ca55a10d787f982d1aa57d530bb065"
+content-hash = "c4e539f5e4b9249ce56a41447cc5f69888c268495693751c0d1fb9fdf1c9e9ea"
 
 [metadata.files]
 asgiref = []
@@ -263,6 +283,7 @@ colorama = []
 distlib = []
 django = []
 django-environ = []
+djangorestframework = []
 exceptiongroup = []
 filelock = []
 identify = []
@@ -274,6 +295,7 @@ pluggy = []
 pre-commit = []
 psycopg2-binary = []
 pytest = []
+pytz = []
 pyyaml = []
 sqlparse = []
 tomli = []
