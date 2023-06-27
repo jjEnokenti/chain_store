@@ -1,7 +1,9 @@
 # from rest_framework.filters import SearchFilter, OrderingFilter
 # from rest_framework.permissions import IsAuthenticated
+from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.viewsets import ModelViewSet
 
+from chain_store.filters import ProviderFilter
 from chain_store.models import Provider
 from chain_store.serializers.provider import (
     ProviderCreateSerializer,
@@ -16,8 +18,8 @@ class ProviderViewSet(ModelViewSet):
         'create': ProviderCreateSerializer
     }
 
-    # filter_backends = ()
-    # search_fields = ('contact__country',)
+    filter_backends = (DjangoFilterBackend,)
+    filterset_class = ProviderFilter
 
     # permission_classes = (IsAuthenticated,)
 
