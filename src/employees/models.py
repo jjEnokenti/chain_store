@@ -2,7 +2,7 @@ from django.contrib.auth.models import AbstractUser
 
 
 class Employee(AbstractUser):
-    pass
+    """Employee model."""
 
     class Meta:
         verbose_name = ''
