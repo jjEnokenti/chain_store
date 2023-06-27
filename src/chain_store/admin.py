@@ -11,18 +11,27 @@ from chain_store.models import (
 
 @admin.register(Contact)
 class ContactAdmin(admin.ModelAdmin):
+    """Add contact to admin panel."""
     list_display = ('email', 'full_address',)
     list_filter = ('email', 'city', 'country', 'street',)
 
 
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
+    """Add product to admin panel."""
     list_display = ('title', 'model', 'release_date',)
     list_filter = ('title', 'model', 'release_date',)
 
 
 @admin.register(Provider)
-class StoreAdmin(admin.ModelAdmin):
+class ProviderAdmin(admin.ModelAdmin):
+    """
+    Add provider to admin panel.
+
+    methods:
+        provider_ling - return child provider link
+        clear_debt - clears the debt owed to the provider
+    """
     list_display = (
         'title',
         'contact',
