@@ -4,7 +4,7 @@ down:
 	sudo docker-compose -f docker-compose.yaml down
 
 run tests:
-	sudo docker-compose -f docker-compose-test.yaml up
+	sudo docker-compose -f docker-compose-test.yaml up -d
 down tests:
 	sudo docker-compose -f docker-compose-test.yaml down
 
