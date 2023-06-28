@@ -1,6 +1,39 @@
 version: "3.9"
 
 services:
+
+  api:
+    container_name: api
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: always
+    env_file:
+      - .env
+    ports:
+      - ${API_PORT:-8000}:8000
+    volumes:
+      - ./src:/app
+    depends_on:
+      db:
+        condition: service_healthy
+      migrations:
+        condition: service_completed_successfully
+    command: bash -c 'gunicorn project.wsgi:application --bind ${API_HOST}:${API_PORT}'
+
+  migrations:
+    container_name: migrations
+    build:
+      context: .
+      dockerfile: Dockerfile
+    env_file:
+      - .env
+    depends_on:
+      db:
+        condition: service_healthy
+    command: bash -c 'python3 manage.py makemigrations
+      && python3 manage.py migrate'
+
   db:
     container_name: postgres_db
     image: postgres:15.1-alpine
@@ -22,4 +55,5 @@ services:
 
 
 volumes:
+  src:
   pg_data:
