@@ -211,10 +211,10 @@
 <h3 align="center">Тесты</h3>
 
 ### 1. Для старта тестов
-    make run tests
+    make runtest
 
 ### 2. Для просмотра результата тестов
     make show results
 
 ### 3. Для удаления контейнеров с тестами
-    make down tests
+    make downtest

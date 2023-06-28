@@ -3,10 +3,13 @@ up:
 down:
 	sudo docker-compose -f docker-compose.yaml down
 
-run tests:
+runtest:
 	sudo docker-compose -f docker-compose-test.yaml up -d
-down tests:
+downtest:
 	sudo docker-compose -f docker-compose-test.yaml down
+
+show results:
+	sudo docker-compose -f docker-compose-test.yaml logs -f
 
 setup project:
 	poetry config virtualenvs.create false \
