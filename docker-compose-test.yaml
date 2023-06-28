@@ -7,7 +7,6 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    restart: always
     env_file:
       - .env
     depends_on:
@@ -15,7 +14,7 @@ services:
         condition: service_healthy
       migrations:
         condition: service_completed_successfully
-    command: bash -c 'python3 pytest .'
+    command: bash -c 'pytest -vv'
 
   migrations:
     container_name: migrations
