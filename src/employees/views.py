@@ -38,6 +38,7 @@ class EmployeeLoginSerializer(generics.GenericAPIView):
 
 
 class EmployeeLogoutView(generics.GenericAPIView):
+    serializer_class = serializers.EmployeeSerializer
     permission_classes = (IsAuthenticated,)
 
     @extend_schema(
