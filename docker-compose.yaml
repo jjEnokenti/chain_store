@@ -19,7 +19,8 @@ services:
         condition: service_healthy
       migrations:
         condition: service_completed_successfully
-    command: bash -c 'gunicorn project.wsgi:application --bind ${API_HOST}:${API_PORT}'
+    command: bash -c 'python3 manage.py collectstatic --no-input &&
+      gunicorn project.wsgi:application --bind ${API_HOST}:${API_PORT}'
 
   migrations:
     container_name: migrations
