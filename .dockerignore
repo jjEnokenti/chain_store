@@ -1,0 +1,12 @@
+.idea
+.pytest_cache
+.pre-commit-config.yaml
+.gitignore
+.git
+
+.env.example
+Dockerfile
+Makefile
+README.md
+setup.cfg
+docker-compose-test.yaml
